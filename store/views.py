@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render,redirect
+from django.urls import reverse
 
 def home(request):
-    return HttpResponse("Barcha musiqalar")
+    return render(request, "index.html")
 
-def single_news(request):
-    return HttpResponse("Bitta musiqa")
+def single(request):
+    return render(request, "item.html")
