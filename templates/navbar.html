@@ -1,0 +1,35 @@
+<nav class="navbar navbar-main navbar-expand pl-0">
+    <ul class="navbar-nav flex-wrap">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">All categories </a>
+            <div class="dropdown-menu dropdown-large">
+                <nav class="row">
+                    <div class="col-6">
+                        {% for cat in categories %}
+                            <a href="#">{{ cat.name }}</a>
+                        {% endfor %}
+                    </div>
+                    <!-- <div class="col-6">
+                        <a href="page-profile-main.html">Profile main</a>
+                        <a href="page-profile-orders.html">Profile orders</a>
+                        <a href="page-profile-seller.html">Profile seller</a>
+                        <a href="page-profile-wishlist.html">Profile wishlist</a>
+                        <a href="page-profile-setting.html">Profile setting</a>
+                        <a href="page-profile-address.html">Profile address</a>
+                        <a href="page-components.html" target="_blank">More components</a>
+                    </div> -->
+                </nav> <!--  row end .// -->
+            </div> <!--  dropdown-menu dropdown-large end.// -->
+        </li>
+        <div class="row">
+        <li class="nav-item">
+            {% for cat in categories %}
+                <a href="#">{{ cat.name }}</a>
+            {% endfor %}
+        </li>
+        </div>  
+    </ul>
+</nav> <!-- navbar-main  .// -->

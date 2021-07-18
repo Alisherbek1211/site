@@ -35,7 +35,7 @@ class Product(models.Model):
     product_description = models.TextField(verbose_name="Description")
     rating = models.FloatField(verbose_name="Rate")
     category = models.ForeignKey(Category,on_delete=models.CASCADE,null=True)
-    icon = models.ImageField(verbose_name="images",upload_to="image/", height_field=None, width_field=None, max_length=100,null=True)
+    image = models.ImageField(verbose_name="images",upload_to="image/",null=True)
     
     created_at = models.DateTimeField(verbose_name="Date of creation",auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="Modified date",auto_now=True)

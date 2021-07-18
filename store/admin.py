@@ -13,9 +13,9 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ["firstname","lastname","email","phone_number","password"]
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["name","price","stock","product_description","rating","category","created_at","updated_at","icon"]
-    list_display_links = ["name","price","stock","product_description","rating","category","created_at","updated_at","icon"]
-    search_fields = ["name","price","stock","product_description","rating","created_at","updated_at","icon"]
+    list_display = ["name","price","stock","product_description","rating","category","created_at","updated_at","image"]
+    list_display_links = ["name","price","stock","product_description","rating","category","created_at","updated_at","image"]
+    search_fields = ["name","price","stock","product_description","rating","created_at","updated_at","image"]
 
 admin.site.register(User,UserAdmin)
 admin.site.register(Category,CategoryAdmin)

@@ -1,5 +1,10 @@
+from store.models import Category,Product
+
+
 def doimiy(request):
+    categories = Category.objects.all()
+    products = Product.objects.all()
     return {
-        "age":20,
-        "name":"Alisher"
+        "categories": categories,
+        "products": products
     }
