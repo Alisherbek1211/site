@@ -1,5 +1,8 @@
+from onlineshop.context import category
 from django.shortcuts import render,get_object_or_404
-from .models import Product
+from .models import Category, Product, SubCategory
+from .utils import min_max_filter
+
 
 def home(request):
     products = Product.objects.filter().order_by("-rating").all()[:12]
@@ -8,6 +11,38 @@ def home(request):
         "products": products,
     }
     return render(request, "index.html",context)
+
+
+def store(request):
+    products = Product.objects.all()
+      
+     
+    context = {
+        "products":products
+    }
+    return render(request,"store.html",context)
+
+
+def category_products(request, category_slug):
+    category = get_object_or_404(Category,slug=category_slug)
+    products = Product.objects.filter(sub_category__category=category)
+    
+    context = {
+        "products": products
+    }
+    return render(request,"store.html",context)
+
+
+def sub_category_products(request, category_slug , sub_category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
+    subcategory = get_object_or_404(SubCategory,slug=sub_category_slug,category=category)
+    products = Product.objects.filter(sub_category=subcategory)
+    context = {
+        "products": products
+    }
+    return render(request,"store.html",context)
+
+
 def product_detail(request,slug):
     product = get_object_or_404(Product,slug=slug)
     context = {
