@@ -15,7 +15,7 @@ def home(request):
 
 def store(request):
     products = Product.objects.all()
-      
+    products = min_max_filter(request, products)  
      
     context = {
         "products":products
@@ -26,7 +26,7 @@ def store(request):
 def category_products(request, category_slug):
     category = get_object_or_404(Category,slug=category_slug)
     products = Product.objects.filter(sub_category__category=category)
-    
+    products = min_max_filter(request, products) 
     context = {
         "products": products
     }
@@ -37,6 +37,7 @@ def sub_category_products(request, category_slug , sub_category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     subcategory = get_object_or_404(SubCategory,slug=sub_category_slug,category=category)
     products = Product.objects.filter(sub_category=subcategory)
+    products = min_max_filter(request, products) 
     context = {
         "products": products
     }
