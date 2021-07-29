@@ -31,8 +31,11 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
-
+        
     objects = UserManager()
+
+    def __str__(self):
+        return self.name
 
     def has_perm(self, obj):
         return self.is_admin

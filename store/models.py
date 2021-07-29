@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import datetime,timezone
 
+from django.db.models.fields.files import ImageField
+
 
 class Category(models.Model):
     class Meta:
@@ -56,3 +58,15 @@ class Product(models.Model):
     def is_new_product(self):
         time_delta = datetime.now(timezone.utc) - self.created_at
         return time_delta.seconds < 86400
+
+
+class ProductColor(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class ProductSize(models.Model):
+    name = models.CharField(max_length=255)
+
+class ProductImage(models.Model):
+    image = models.ImageField(upload_to="images/")
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
