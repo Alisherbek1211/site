@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render,get_object_or_404
 from django.urls import reverse
+from django.db.models import Q
 
 
 from .models import Category, Product, SubCategory
@@ -15,9 +16,16 @@ def home(request):
     return render(request, "index.html",context)
 
 
+def broad_search(items, word):
+    return items.filter(Q(title__containes=word)| Q(description__contains=word))
+
 
 def store(request):
     products = Product.objects.all()
+
+    word = request.GET.get('q',None)
+    if word:
+        products = broad_search(request, word)
 
     paginated = get_paginated(request, products, 3)
 
