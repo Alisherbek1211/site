@@ -11,22 +11,12 @@
   <div> <a href="#"><img src="{% get_media_prefix %}{{product.image}}" id = "main-image-frame"></a></div>
 </div> <!-- slider-product.// -->
 <div class="thumbs-wrap">
+    <a href="#" class="item-thumb"> <img src="{% get_media_prefix %}{{product.image}}" class="extra-images"></a>
     {% for product_image in product.product_images.all %}
-        <a href="#" class="item-thumb"> <img src="{% get_media_prefix %}{{ product_image.image }}" class="extra-images"></a>
+    <a href="#" class="item-thumb"> <img src="{% get_media_prefix %}{{ product_image.image }}" class="extra-images"></a>
     {% endfor %}
 </div> <!-- slider-nav.// -->
-<script>
-    const extraImages = document.querySelectorAll(".extra-images");
-    const mainImage = document.getElementById("main-image-frame");
 
-    extraImages.forEach((image) => {
-        image.addEventListener("click", (e) => {
-            e.preventDefault();
-            const ChosenImage = image.getAttribute("src")
-            mainImage.setAttribute("src", ChosenImage);
-        });
-    })
-</script>
 </article> <!-- gallery-wrap .end// -->
 </div> <!-- card.// -->
     </aside>
@@ -94,3 +84,18 @@
 
 <!-- ================ ITEM DETAIL END .// ================= -->
 {% endblock main %}
+
+{% block script %}
+<script>
+    const extraImages = document.querySelectorAll(".extra-images");
+    const mainImage = document.getElementById("main-image-frame");
+
+    extraImages.forEach((image) => {
+        image.addEventListener("click", (e) => {
+            e.preventDefault();
+            const ChosenImage = image.getAttribute("src")
+            mainImage.setAttribute("src", ChosenImage);
+        });
+    })
+</script>
+{% endblock script %}
